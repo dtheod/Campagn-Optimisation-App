@@ -1,2 +1,2 @@
-# Campagn-Optimisation-App
+# Campaign-Optimisation-App
 Campaign Optimisation App
