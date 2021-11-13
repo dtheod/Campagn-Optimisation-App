@@ -23,22 +23,8 @@ observeEvent({input$Login }, {
       shinyjs::hide("login")
       shinyjs::show("loading")
       Sys.sleep(1)
-      shinyjs::toggle("clevel_group_ui")
-      updateTabItems(session, "c_level_group_tabs", selected = "clevel_organisation")
-      shinyjs::hide("loading")
-      
-    } else if (USER$Logged == TRUE & input$username == "consumer_group") {
-      shinyjs::hide("login")
-      shinyjs::show("loading")
-      Sys.sleep(1)
-      shinyjs::toggle("consumer_group_ui")
-      shinyjs::hide("loading")
-      
-    } else if (USER$Logged == TRUE & input$username == "home") {
-      shinyjs::hide("login")
-      shinyjs::show("loading")
-      Sys.sleep(1)
-      shinyjs::toggle("customer_segments")
+      shinyjs::toggle("admin")
+      updateTabItems(session, "user_tabs", selected = "user_dashboard")
       shinyjs::hide("loading")
       
     } else {

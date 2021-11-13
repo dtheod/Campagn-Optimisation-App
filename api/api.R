@@ -51,13 +51,5 @@ check <- function(input_password, input_username){
 }
 
 
-conversions_all <- function(){
-  
-  leads <- dbGetQuery(con, "SELECT * FROM Lead_Demography")
-  markets <- dbGetQuery(con, "SELECT * FROM Market_Touchdown")
-  return(markets)
-  
-}
-
 
 

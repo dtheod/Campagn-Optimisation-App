@@ -1,4 +1,4 @@
-div(id = "clevel_group_ui",
+div(id = "admin",
     style = "display:none",
     tags$head(
       includeScript("./www/fonts.css")
