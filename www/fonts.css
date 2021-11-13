@@ -1,0 +1,239 @@
+
+
+
+  .skin-blue .main-header .logo {
+      background-color: #FFFFFF;
+                              }
+  /* logo when hovered */
+  .skin-blue .main-header .logo:hover {
+      background-color: #FFFFFF;
+                              }
+  .skin-blue .sidebar-menu>li>.treeview-menu {
+    margin: 0 1px;
+    background: #FFFFFF;
+    color:#112D4E
+}
+
+.box.box-warning {
+    border-top-color: #112D4E;
+}
+
+.bttn-pill.bttn-primary {
+  background: #112D4E;
+  color: #fff;
+}
+
+.skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
+  color: #112D4E;
+  }
+  /* navbar (rest of the header) */
+.skin-blue .main-header .navbar {
+      background-color:#112D4E;
+      }        
+                              
+                              /* toggle button when hovered  */                    
+                              .skin-blue .main-header .navbar .sidebar-toggle:hover{
+                              background-color: #112D4E;
+                              }
+                              
+                              .content-wrapper, .right-side {
+                              background-color: #FFFFFF;
+                              }
+                              
+                              .skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
+                              color: #112D4E;
+                              }
+
+                                .skin-blue .main-sidebar .sidebar .sidebar-menu a{
+                                  background-color: #112D4E;
+                              color: #112D4E;font-weight: bold; font-size: 15px
+                              }
+                              
+                              .skin-blue .main-sidebar {
+                              background-color: #FFFFFF;
+                              }
+                              
+                              .skin-blue .main-sidebar .sidebar .sidebar-menu a{
+                              background-color: #FFFFFF;
+                              color: #4F4E4E;
+                              }
+
+    .bg-aqua {background-color: #112D4E!important; }
+
+    .bootstrap-switch .bootstrap-switch-handle-off, .bootstrap-switch .bootstrap-switch-handle-on, .bootstrap-switch .bootstrap-switch-label {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 7.5px 12px;
+      font-size: 14px;
+      line-height: 20px;
+  }
+  
+    body {
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 13px;
+      line-height: 1.42857143;
+      color: #333;
+    }
+    
+    hr {
+      margin-top: 1px;
+      margin-bottom: 10px;
+      border: 0;
+      border-top: 1.5px solid #CACFD2;
+      }
+
+
+    .js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background:#112D4E}
+    .js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background:#112D4E}
+    .js-irs-2 .irs-single, .js-irs-2 .irs-bar-edge, .js-irs-2 .irs-bar {background:#112D4E}
+    #put_country ~ .selectize-control.single .selectize-input {border: 1px solid #112D4E;}
+    #is_active ~ .selectize-control.single .selectize-input {border: 1px solid #112D4E;}
+    
+    .main-sidebar { font-size: 16px; color: #867D86 }
+    #put_credit_card ~ .selectize-control.single .selectize-input {border: 1px solid #0283CE;}
+    
+.box.box-solid.box-primary{
+border-bottom-color:#FFFFFF;
+border-left-color:#FFFFFF;
+border-right-color:#FFFFFF;
+border-top-color:#112D4E;
+}
+
+.skin-blue .main-header li.user-header {
+  background-color: #FFFFFF;
+  height:60px;
+  }
+
+
+.skin-blue .sidebar-menu>li>.treeview-menu {
+    margin: 0 1px;
+    background: #FFFFFF;
+    color:#112D4E
+}
+.bg-yellow {background-color: #F4D03F!important; }
+
+.bg-green {background-color: #E5E7E9!important;}
+
+.bg-red {background-color: #ED2323!important;}
+
+.fa-lock {font-size: 18px; -webkit-font-smoothing: auto;}
+.fa-user {font-size: 18px;}
+.fa-chart-area {font-size: 18px;}
+.fa-android {font-size: 18px;}
+.fa-cogs {font-size: 18px;}
+.fa-calendar {font-size: 18px;}
+.fa-wrench {font-size: 18px;}
+.fa-mobile-alt {font-size: 20px;}
+.fa-sms {font-size: 20px;}
+.fa-wifi {font-size: 20px;}
+.fa-play-circle {font-size: 20px;}
+.fa-plus-square {font-size: 20px;}
+.fa-poll {font-size: 20px;}
+.fa-adjust {font-size: 18px;}
+.fa-product-hunt {font-size: 18px;}
+
+.box.box-solid.box-primary>.box-header {
+  color:#fff;
+  background:#112D4E
+                    }
+#password {height: 49px;}
+#username {height: 49px;}
+
+.box.box-primary {
+	border-top-color:#112D4E
+}
+
+.flip-box-front i.icon-default-style {
+  display: none !important;
+}
+
+span.description-percentage.text-red {font-size: 20px}
+span.description-percentage.text-green {font-size: 20px}
+span.description-text {font-size:20px}
+
+.sidebar-menu li { margin-top: 5px; margin-left:15px}
+
+.sidebar-menu li { margin-top: 2px; margin-left:5px}
+.sidebar-menu .treeview-menu>li>a {padding-left:35px}
+
+.input-group-sm>.form-control, .input-group-sm>.input-group-addon, .input-group-sm>.input-group-btn>.btn {
+  height: 34.5px;
+  padding: 5px 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+
+sidebar-menu .treeview-menu>li>a {
+  padding: 9px 9px 9px 15px;
+  display: block;
+  font-size: 14px;
+}
+
+.label-warning, .modal-warning .modal-body {
+  background-color: #112D4E!important;
+  }
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+    color: #fff;
+    background: #112D4E;
+    margin-bottom: 10px;
+    }
+
+.control-sidebar-menu .menu-info {
+      margin-left: 55px;
+      margin-top: 18px;
+}
+
+.control-sidebar-menu {
+    list-style: none;
+    padding: 1px;
+    margin-left:5px
+}
+
+/* Font size of text in events rightsidebar */
+.control-sidebar-menu .menu-info>p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.control-sidebar-subheading {
+  display: block;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.box.box-solid.box-primary {
+  border-bottom-color:  #112D4E;
+  border-left-color :#112D4E;;
+  border-right-color: #112D4E;
+  border-top-color: #112D4E;
+}
+
+a {
+  color: #112D4E;
+}
+
+.main-header.logo {
+    width: 200px;
+    height: 60px;
+}     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
