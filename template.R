@@ -59,7 +59,8 @@ div(id = "admin",
         ),
         tabItems(
                 source(file.path("application/Dashboard/", "dashboard_ui.R"),  local = TRUE)$value,
-                source(file.path("application/ModelPrediction", "model_prediction_ui.R"),  local = TRUE)$value
+                source(file.path("application/ModelPrediction", "model_prediction_ui.R"),  local = TRUE)$value,
+                source(file.path("application/ModelPrediction", "model_results_ui.R"),  local = TRUE)$value
                 )
             )
     )

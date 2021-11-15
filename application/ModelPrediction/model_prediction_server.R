@@ -3,7 +3,7 @@
 
 output$profile_conversions <- renderHighchart({
 
-    new_data = profile_reactive()
+    new_data = profile_lazy_reactive()
     dataset = dataset_reactive()
 
     filt = dataset %>%
@@ -47,6 +47,22 @@ output$vbox <- renderValueBox(
             color = "aqua",
             href = NULL)
     )
+
+observeEvent(input$profile_button, {
+    withProgress(message = 'Fetching data from Profile', value = 0.2, {
+    Sys.sleep(2)
+    incProgress(0.5, detail = "Running predictions using ML model...")
+
+    updateTabItems(session, "user_tabs", selected = "ml_results")
+    })
+})
+
+
+observeEvent(input$best_profile, {
+
+    updateSelectInput(session, inputId = "input_education", label = "Education",
+                      choices = c("College", "High School", "Attended Vocational", "Graduate School"), selected = "Attended Vocational")
+})
 
 
 

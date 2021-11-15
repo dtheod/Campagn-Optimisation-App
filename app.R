@@ -19,6 +19,7 @@ server <- function(input, output, session) {
   source(file.path(".//application//Dashboard/dashboard_server.R"),  local = TRUE)$value
   source(file.path(".//application//Reactivity/reactivity.R"),  local = TRUE)$value
   source(file.path(".//application//ModelPrediction/model_prediction_server.R"),  local = TRUE)$value
+  source(file.path(".//application//ModelPrediction/model_results_server.R"),  local = TRUE)$value
 
   }
 

@@ -123,13 +123,15 @@ tabItem(
                             ),
                     br(),
                     br(),
-                    fluidRow(column(4,
-                                        actionBttn(
-                                                inputId = "profile_button",
-                                                label = "Run Profile",
-                                                color = "primary"
-                                            )
-                                    )
+                    fluidRow(column(2,
+                                        actionButton("profile_button", "Run Prediction",icon = icon("angle-double-right"),
+                                                style="color: #FFFFFF; background-color: #112D4E; border-color: #112D4E;")
+                                    ),
+                             column(2,
+                                        actionButton("best_profile", "Best Profile",icon = icon("users"),
+                                                style="color: #FFFFFF; background-color: #F79714; border-color: #F79714;margin-left:2em")
+                             
+                             )
                             )
                   ),
            column(5, 
