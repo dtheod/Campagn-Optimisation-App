@@ -72,3 +72,41 @@ output$timeseries_chart <- renderHighchart({
     hc
 
 })
+
+
+output$vbox1 <- renderValueBox(valueBoxSpark(
+                                            value = "1,345",
+                                            title = toupper("Lines of code written"),
+                                            sparkobj = hc_func(),
+                                            subtitle = tagList(HTML("&darr;"), "25% Since last day"),
+                                            info = "This is the lines of code I've written in the past 20 days! That's a lot, right?",
+                                            width = 12,
+                                            color = "aqua",
+                                            href = NULL
+  ))
+output$vbox2 <- renderValueBox(valueBoxSpark(
+                                            value = "1,345 KM",
+                                            title = toupper("Distance Traveled"),
+                                            sparkobj = hchart(df, "line", hcaes(x, y), name = "Distance")  %>% 
+                                                        hc_size(height = 100) %>% 
+                                                        hc_credits(enabled = FALSE) %>% 
+                                                        hc_add_theme(hc_theme_sparkline_vb()),
+                                            subtitle = tagList(HTML("&uarr;"), "25% Since last month"),
+                                            info = "This is the lines of code I've written in the past 20 days! That's a lot, right?",
+                                            width = 12,
+                                            color = "orange",
+                                            href = NULL
+  ))
+output$vbox3 <- renderValueBox(valueBoxSpark(
+                                            value = "1,3 Hrs.",
+                                            title = toupper("Thinking time"),
+                                            sparkobj = hchart(df, "column", hcaes(x, y), name = "Daily amount")  %>% 
+                                                        hc_size(height = 100) %>% 
+                                                        hc_credits(enabled = FALSE) %>% 
+                                                        hc_add_theme(hc_theme_sparkline_vb()) ,
+                                            subtitle = tagList(HTML("&uarr;"), "5% Since last year"),
+                                            info = "This is the lines of code I've written in the past 20 days! That's a lot, right?",
+                                            width = "100%",
+                                            color = "navy",
+                                            href = NULL
+  ))

@@ -13,7 +13,6 @@ auth_api <- function(input_username){
     con <- dbConnect(RSQLite::SQLite(), ".//Data/campaing_db.sqlite")
     query = paste0("SELECT Username, Password FROM Users WHERE Username = '", input_username,"'")
     users_table = dbGetQuery(con, query)
-    print(users_table)
     dbDisconnect(con)
   },
   error = function(){

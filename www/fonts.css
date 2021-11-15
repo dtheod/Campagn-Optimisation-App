@@ -59,6 +59,8 @@
                               }
 
     .bg-aqua {background-color: #112D4E!important; }
+    .bg-teal {background-color: #F79714!important; }
+    .bg-navy {background-color: #99A3A4!important; }
 
     .bootstrap-switch .bootstrap-switch-handle-off, .bootstrap-switch .bootstrap-switch-handle-on, .bootstrap-switch .bootstrap-switch-label {
       -webkit-box-sizing: border-box;

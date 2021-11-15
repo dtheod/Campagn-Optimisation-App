@@ -103,23 +103,14 @@ tabItem(
                     fluidRow(column(4,
                                         prettyRadioButtons(
                                                 inputId = "input_marital_status",
-                                                label = "Widow", 
+                                                label = "Marital Status", 
                                                 choices = c("Widow", "Divorced", "Single", "Married"),
                                                 inline = TRUE, 
                                                 status = "primary",
                                                 fill = TRUE
                                             )
                                     ),
-                            column(4,
-                                        pickerInput(
-                                                inputId = "input_source",
-                                                label = "Source", 
-                                                choices = c("Previous Campaign", "Inbound call", "SMS"),
-                                                options = list(
-                                                selected = "Previous Campaign")
-                                            )
-                                    ),
-                            column(4)
+                            column(8)
                             ),
                     br(),
                     br(),

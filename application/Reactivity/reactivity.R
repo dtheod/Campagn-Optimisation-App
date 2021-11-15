@@ -25,12 +25,12 @@ profile_reactive <- eventReactive(input$profile_button, {
             Features = c("Age", "Education", "Ethnicity",
                          "Gender", "Income", "Credit",
                          "Channel", "Time", "DayWeek",
-                         "Marital", "Source")
+                         "Marital")
             ,Values = 
                     c(input$input_age, input$input_education, input$input_ethnicity,
                     input$input_gender, input$input_income, input$input_credit,
                     input$input_channel, input$input_time, input$input_dayweek,
-                    input$input_marital_status, input$input_source),
+                    input$input_marital_status),
 
                  )
     new_data = as.data.frame(as.matrix(t(data[,-1])))
@@ -43,12 +43,12 @@ profile_lazy_reactive <- reactive({
             Features = c("Age", "Education", "Ethnicity",
                          "Gender", "Income", "Credit",
                          "Channel", "Time", "DayWeek",
-                         "Marital", "Source")
+                         "Marital")
             ,Values = 
                     c(input$input_age, input$input_education, input$input_ethnicity,
                     input$input_gender, input$input_income, input$input_credit,
                     input$input_channel, input$input_time, input$input_dayweek,
-                    input$input_marital_status, input$input_source),
+                    input$input_marital_status)
 
                  )
     new_data = as.data.frame(as.matrix(t(data[,-1])))

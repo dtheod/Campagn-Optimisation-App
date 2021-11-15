@@ -17,7 +17,6 @@ output$profile_conversions <- renderHighchart({
                 Time_Of_Day == new_data$Time,
                 DayofWeek == new_data$DayWeek,
                 Marital_Status == new_data$Marital)
-    print(filt)
 
     donut_table = data_frame(
         Classes = c("Converged", 'Not Converged'),
@@ -61,7 +60,35 @@ observeEvent(input$profile_button, {
 observeEvent(input$best_profile, {
 
     updateSelectInput(session, inputId = "input_education", label = "Education",
-                      choices = c("College", "High School", "Attended Vocational", "Graduate School"), selected = "Attended Vocational")
+                      choices = c("College", "High School", "Attended Vocational", "Graduate School"), selected = "High School")
+    
+    updatePrettyRadioButtons(session, inputId = "input_age", label = "Age group",
+                      choices = c("Young", "Middle Age", "Senior Citizen"), selected = "Young", inline = TRUE)
+    
+    updateSelectInput(session, inputId = "input_ethnicity", label = "Ethnicity",
+                      choices = c("Latino", "Hispanic", "White Americans", "African American"), selected = "African American")
+    
+    updatePrettyRadioButtons(session, inputId = "input_gender", label = "Gender",
+                      choices = c("Male", "Female"), selected = "Female", inline = TRUE)
+    
+    updateSelectInput(session, inputId = "input_income", label = "Income Bucket",
+                      choices = c("60k-120k", ">120k", "<60k"), selected = "<60k")
+
+    updateSelectInput(session, inputId = "input_credit", label = "Credit Score",
+                      choices = c("<350", ">700", "350-700"), selected = "350-700")
+
+    updatePrettyRadioButtons(session, inputId = "input_channel", label = "Channel",
+                      choices = c("SMS", "Cold Calling", "Email"), selected = "Email", inline = TRUE)
+    
+    updateSelectInput(session, inputId = "input_time", label = "Time of Day",
+                      choices = c("Morning", "Afternoon", "Evening"), selected = "Evening")
+
+    updateSelectInput(session, inputId = "input_dayweek", label = "Day of Week",
+                      choices = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"), selected = "Tuesday")
+
+    updatePrettyRadioButtons(session, inputId = "input_marital_status", label = "Marital Status",
+                      choices = c("Widow", "Divorced", "Single", "Married"), selected = "Single", inline = TRUE)
+
 })
 
 
