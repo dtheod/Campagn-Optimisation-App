@@ -25,7 +25,7 @@ output$comm_prods_viz <- renderHighchart({
     ) %>%
     hc_add_dependency("plugins/grouped-categories.js") %>%
     hc_colors(c("#112D4E", "#F79714", "#99A3A4")) %>%
-    hc_title(text = "Conversions over time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
+    hc_title(text = "Conversions over Channel, Day and Time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
   
 })
 
@@ -34,7 +34,8 @@ output$map_conversion  <- renderHighchart({
 
   dashboard_data = dataset_reactive()
 
-  mapdata <- get_data_from_map(download_map_data("https://code.highcharts.com/mapdata/countries/us/us-all.js"))
+  download_data = download_map_data("https://code.highcharts.com/mapdata/countries/us/us-all.js")
+  mapdata <- get_data_from_map(download_data)
 
   states_map = dashboard_data %>%
     group_by(State) %>%
@@ -46,8 +47,8 @@ output$map_conversion  <- renderHighchart({
         borderColor = "#FAFAFA", borderWidth = 0.1,
         color = "#112D4E",
         tooltip = list(valueDecimals = 0)) %>%
-        hc_colors(c("#112D4E")) %>%
-        hc_title(text = "Conversions over time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
+        hc_colors(c("#112D4E")) %>% 
+        hc_title(text = "Conversions over states",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
 
 })
 
@@ -65,7 +66,7 @@ output$timeseries_chart <- renderHighchart({
 
     hc <- highchart(type = "stock") %>% 
       hc_title(text = "Conversions over time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px')) %>%
-      hc_add_series(xts_organisation_data, id = "xts_organisation_data", name = "COonversions") %>% 
+      hc_add_series(xts_organisation_data, id = "xts_organisation_data", name = "Conversions") %>% 
       hc_colors(c("#112D4E")) %>%
       hc_legend(enabled = TRUE)
     
@@ -77,7 +78,10 @@ output$timeseries_chart <- renderHighchart({
 output$vbox1 <- renderValueBox(valueBoxSpark(
                                             value = "1,345",
                                             title = toupper("Lines of code written"),
-                                            sparkobj = hc_func(),
+                                            sparkobj = hchart(df, "area", hcaes(x, y), name = "lines of code")  %>% 
+                                                        hc_size(height = 50) %>% 
+                                                        hc_credits(enabled = FALSE) %>% 
+                                                        hc_add_theme(hc_theme_sparkline_vb()) ,
                                             subtitle = tagList(HTML("&darr;"), "25% Since last day"),
                                             info = "This is the lines of code I've written in the past 20 days! That's a lot, right?",
                                             width = 12,
@@ -88,7 +92,7 @@ output$vbox2 <- renderValueBox(valueBoxSpark(
                                             value = "1,345 KM",
                                             title = toupper("Distance Traveled"),
                                             sparkobj = hchart(df, "line", hcaes(x, y), name = "Distance")  %>% 
-                                                        hc_size(height = 100) %>% 
+                                                        hc_size(height = 50) %>% 
                                                         hc_credits(enabled = FALSE) %>% 
                                                         hc_add_theme(hc_theme_sparkline_vb()),
                                             subtitle = tagList(HTML("&uarr;"), "25% Since last month"),
@@ -101,12 +105,12 @@ output$vbox3 <- renderValueBox(valueBoxSpark(
                                             value = "1,3 Hrs.",
                                             title = toupper("Thinking time"),
                                             sparkobj = hchart(df, "column", hcaes(x, y), name = "Daily amount")  %>% 
-                                                        hc_size(height = 100) %>% 
+                                                        hc_size(height = 50) %>% 
                                                         hc_credits(enabled = FALSE) %>% 
                                                         hc_add_theme(hc_theme_sparkline_vb()) ,
                                             subtitle = tagList(HTML("&uarr;"), "5% Since last year"),
                                             info = "This is the lines of code I've written in the past 20 days! That's a lot, right?",
-                                            width = "100%",
+                                            width = 12,
                                             color = "navy",
                                             href = NULL
   ))
