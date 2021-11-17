@@ -77,15 +77,6 @@ valueBoxSpark <- function(value, title, sparkobj = NULL, subtitle, info = NULL,
 }
 
 
-hc_func <- function(){
-  hc <- hchart(df, "area", hcaes(x, y), name = "lines of code")  %>% 
-    hc_size(height = 100) %>% 
-    hc_credits(enabled = FALSE) %>% 
-    hc_add_theme(hc_theme_sparkline_vb()) 
-  return(hc)
-}
-
-
 set.seed(123)
 library(lubridate)
 N <- 20
