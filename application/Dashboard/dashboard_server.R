@@ -74,6 +74,62 @@ output$timeseries_chart <- renderHighchart({
 
 })
 
+output$timeline_campaigns <- renderHighchart({
+
+  dashboard_data = dataset_reactive()
+  campaign_detail = tbl(con, "Campaign_Detail") %>%
+                      collect()
+
+  df1 = dashboard_data %>%
+          group_by(Campaign_Id) %>%
+          summarise(min_date = min(Time_Stamp), max_date = max(Time_Stamp), .groups = 'drop') %>%
+          mutate(min_date = format(as.Date(min_date, format="%m/%d/%Y"),"%Y-%m-%d")) %>%
+          mutate(min_date = paste0("20",substr(min_date, nchar(min_date)-7, nchar(min_date)))) %>%
+          mutate(max_date = format(as.Date(max_date, format="%m/%d/%Y"),"%Y-%m-%d")) %>%
+          mutate(max_date = paste0("20",substr(max_date, nchar(max_date)-7, nchar(max_date)))) %>%
+          inner_join(., campaign_detail %>% select(Campaign_Id, Campaign_Name, Sub_Category), by = "Campaign_Id") %>%
+          as_tibble() %>%
+          mutate(min_date = as.Date(min_date)) %>%
+          mutate(max_date = as.Date(max_date))
+
+  df1 <- mutate_if(df1, is.Date, datetime_to_timestamp) %>%
+          rename(start = 2, end = 3) %>%
+          mutate(progress = 0)
+
+  progress1 = dashboard_data %>%
+                group_by(Campaign_Id) %>%
+                summarise(pos = sum(Conversion_Flag), all = n()) %>%
+                mutate(neg = all - pos) %>%
+                mutate(progress = pos/all) %>%
+                mutate(progress = as.numeric(progress)) %>%
+                mutate(progress = round(progress,2))
+
+  print(progress1)
+  hc <- hchart(
+        df1,
+        "xrange",
+        hcaes(x = start, x2 = end, y = c(0,1,2,3,4,5)),
+        dataLabels = list(enabled = TRUE)
+      ) %>% 
+        hc_xAxis(
+          title = FALSE,
+          type = "datetime"
+        ) %>% 
+        hc_yAxis(
+          title = FALSE,
+          categories = df1$Campaign_Name
+        ) %>%
+        hc_colors(c("#112D4E", "#F79714","#112D4E", "#99A3A4","#99A3A4","#99A3A4"))
+  
+  hc
+
+
+})
+
+output$dynamic_viz <- renderHighchart({
+  ...
+})
+
 
 output$vbox1 <- renderValueBox(valueBoxSpark(
                                             value = "1,345",

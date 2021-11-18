@@ -19,6 +19,8 @@ dataset_reactive = reactive({
 })
 
 
+
+
 profile_reactive <- eventReactive(input$profile_button, {
 
     data = data_frame(
@@ -35,6 +37,8 @@ profile_reactive <- eventReactive(input$profile_button, {
                  )
     new_data = as.data.frame(as.matrix(t(data[,-1])))
     names(new_data) = data$Features
+    print(new_data)
+    write.csv(new_data, "new_data.csv", row.names = FALSE)
     return(new_data)
 })
 

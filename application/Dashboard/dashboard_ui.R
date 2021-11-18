@@ -21,5 +21,35 @@ tabItem(
           ),
   fluidRow(column(6, highchartOutput("map_conversion")),
            column(6, highchartOutput("timeseries_chart"))
-           )
+           ),
+  fluidRow(column(6, highchartOutput("timeline_campaigns")),
+           column(1,dropdownButton(
+
+                                tags$h3("List of Inputs"),
+
+                                selectInput(inputId = 'xcol',
+                                                label = 'Dimension',
+                                                choices = c("Channel", "Time_Of_Day", "DayofWeek", "Annual_Income_Bucket",
+                                                            "Credit_Score", "Highest_Education")
+                                           ),
+
+                                selectInput(inputId = 'ycol',
+                                                label = 'Type of Graph',
+                                                choices = c("Bar Chart", "Pie Chart"),
+                                                selected = ("Bar Chart")
+                                           ),
+
+                                selectInput(inputId = 'measure',
+                                                label = 'Measure',
+                                                choices = c("# of Conversions", "Distinct customers"),
+                                                selected = ("# of Conversions")
+                                           ),
+
+                                circle = TRUE, status = "orange",
+                                icon = icon("gear"), width = "300px",
+
+                                tooltip = tooltipOptions(title = "Click to see inputs !")
+                                )),
+           column(5)
+          )
 )

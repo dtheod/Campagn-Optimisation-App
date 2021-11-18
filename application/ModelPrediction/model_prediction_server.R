@@ -51,6 +51,8 @@ observeEvent(input$profile_button, {
     withProgress(message = 'Fetching data from Profile', value = 0.2, {
     Sys.sleep(2)
     incProgress(0.5, detail = "Running predictions using ML model...")
+    data = profile_reactive()
+    write.csv(data, "profile_data.csv", row.names = FALSE)
 
     updateTabItems(session, "user_tabs", selected = "ml_results")
     })
