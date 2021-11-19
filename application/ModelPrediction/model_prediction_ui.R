@@ -3,7 +3,7 @@ tabItem(
   h3("Create Profile", style = "font-family: 'Arial'; font-weight: 550; line-height: 1.1;color: #F79714;"),
   br(),
   br(),
-  fluidRow(column(7,
+  fluidRow(column(6,
                     fluidRow(column(4,
                                         prettyRadioButtons(
                                             inputId = "input_age",
@@ -125,13 +125,13 @@ tabItem(
                              )
                             )
                   ),
-           column(5, 
+           column(6, 
                     fluidRow(
-                             column(3),
-                             column(6,valueBoxOutput("vbox", width = "100%")),
-                             column(3)
+                             column(6,infoBoxOutput("vbox", width = "100%")),
+                             column(6,infoBoxOutput("vbox0", width = "100%")),
                              ),
-                    fluidRow(column(12,highchartOutput("profile_conversions", height = "50%")))
+                    br(),
+                    fluidRow(column(12,highchartOutput("feature_importance", height = "100%")))
            
                   )
            )

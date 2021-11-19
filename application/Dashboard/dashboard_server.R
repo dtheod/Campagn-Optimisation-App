@@ -104,7 +104,7 @@ output$timeline_campaigns <- renderHighchart({
                 mutate(progress = as.numeric(progress)) %>%
                 mutate(progress = round(progress,2))
 
-  print(progress1)
+
   hc <- hchart(
         df1,
         "xrange",
