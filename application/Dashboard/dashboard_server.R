@@ -127,7 +127,61 @@ output$timeline_campaigns <- renderHighchart({
 })
 
 output$dynamic_viz <- renderHighchart({
-  ...
+
+  dataset = dataset_reactive()
+
+  bar_chart = dataset %>%
+    select(input$xcol, "Conversion_Flag") %>%
+    rename(var = 1) %>%
+    group_by(var) %>%
+    summarise(sums = sum(Conversion_Flag),.groups = "drop")
+
+  if (input$ycol == "Bar Chart" | input$ycol == "Pie Chart"){
+    if (input$ycol == "Bar Chart"){
+      type_chart = "column"
+    } else {
+      type_chart = "pie"
+    }
+    hc <- hchart(
+          bar_chart, 
+          type_chart,
+          hcaes(
+            x = var,
+            y = sums
+            ),
+          name = "Conversions"
+          ) %>%
+          hc_plotOptions(
+            series = list(
+              showInLegend = FALSE,
+              pointFormat = "{point.y}%",
+              colorByPoint = TRUE
+          )) %>%
+        hc_xAxis(
+          categories = bar_chart$var
+          ) %>%
+        # Titles, subtitle, caption and credits
+        hc_title(text = "Conversions over time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
+
+  } else {
+
+    highchart() %>%
+      hc_chart(polar = TRUE, type = "line") %>%
+      hc_xAxis(categories = bar_chart$var,
+      tickmarkPlacement = "on",
+      lineWidth = 0) %>%
+      hc_yAxis(gridLineInterpolation = "polygon",
+               lineWidth = 0,
+               min = 0) %>%
+      hc_series(
+        list(
+          name = "Conversions",
+          data = bar_chart$sums,
+          pointPlacement = "on",
+          color = "#82B63A"
+        ))
+  }
+
 })
 
 

@@ -22,7 +22,7 @@ tabItem(
   fluidRow(column(6, highchartOutput("map_conversion")),
            column(6, highchartOutput("timeseries_chart"))
            ),
-  fluidRow(column(6, highchartOutput("timeline_campaigns")),
+  fluidRow(column(5, highchartOutput("timeline_campaigns")),
            column(1,dropdownButton(
 
                                 tags$h3("List of Inputs"),
@@ -35,7 +35,7 @@ tabItem(
 
                                 selectInput(inputId = 'ycol',
                                                 label = 'Type of Graph',
-                                                choices = c("Bar Chart", "Pie Chart"),
+                                                choices = c("Bar Chart", "Pie Chart", "Spyder Chart"),
                                                 selected = ("Bar Chart")
                                            ),
 
@@ -50,6 +50,9 @@ tabItem(
 
                                 tooltip = tooltipOptions(title = "Click to see inputs !")
                                 )),
-           column(5)
-          )
+           column(6, highchartOutput("dynamic_viz"))
+          ),
+  fluidRow(column(6),
+           column(6)
+           )
 )

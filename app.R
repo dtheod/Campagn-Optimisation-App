@@ -48,11 +48,9 @@ ui <-     dashboardPagePlus(
     sidebarMenu(
       id = "user_tabs",
       menuItem("Dashboard", tabName = "user_dashboard", icon = icon("chart-area")),
-      menuItem("Model Prediction", tabName = "model_prediction", icon = icon("robot"),
-               menuSubItem("Create Profile", tabName = "create_profile", icon = icon("clipboard-check")),
-               menuSubItem("Results", tabName = "ml_results", icon = icon("adjust"))
-      ))
-  ),
+      menuItem("Create Profile", tabName = "create_profile", icon = icon("clipboard-check")),
+      menuItem("Results", tabName = "ml_results", icon = icon("adjust"))
+      )),
   dashboardBody(
     tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "fonts.css")
