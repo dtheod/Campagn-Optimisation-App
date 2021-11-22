@@ -10,13 +10,6 @@ output$feature_importance <- renderHighchart({
     data_importance <- data_importance %>%
         mutate(Overall = round(Overall, 3) * 100)
 
-
-#    donut_table = data_frame(
-#        Classes = c("Converged", 'Not Converged'),
-#        Values = c(filt %>% filter(Conversion_Flag == 1) %>% nrow()/nrow(filt),
-#                   filt %>% filter(Conversion_Flag == 0) %>% nrow()/nrow(filt))
-#    )
-
     hchart(data_importance, "bar", hcaes(x = Features, y = Overall)) %>%
         hc_colors(c("#112D4E")) %>%
         hc_title(text = "Feature importance (%)",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
@@ -79,33 +72,13 @@ observeEvent(input$profile_button, {
     incProgress(0.5, detail = "Processing inputs...")
     
     profile_data = profile_reactive()
-    dataset = dataset_reactive()
 
     names(profile_data) = c("Age", "Highest_Education", "Ethnicity", "Gender", "Annual_Income_Bucket", "Credit_Score", "Channel", "Time_Of_Day", "DayofWeek", "Marital_Status")
     profile_data <- profile_data %>%
                         select(Channel, Time_Of_Day, DayofWeek, Age, Credit_Score, Annual_Income_Bucket,
                                Gender, Marital_Status, Ethnicity)
-    dataset_red = dataset %>%
-        select(Channel, Time_Of_Day, DayofWeek, Age, Credit_Score, Annual_Income_Bucket,
-                Gender, Marital_Status, Ethnicity) %>%
-        distinct(.) %>%
-        bind_rows(profile_data)
-    
-    channel_hot = model.matrix(~Channel-1,dataset_red)
-    timeofday_hot = model.matrix(~Time_Of_Day-1,dataset_red)
-    dayofweek_hot = model.matrix(~DayofWeek-1,dataset_red)
-    gender_hot = model.matrix(~Gender-1,dataset_red)
-    age_hot = model.matrix(~Age-1,dataset_red)
-    credit_hot = model.matrix(~Credit_Score-1, dataset_red)
-    income_hot = model.matrix(~Annual_Income_Bucket-1, dataset_red)
-    marital_status_hot = model.matrix(~Marital_Status-1, dataset_red)
-    ethnicity_hot = model.matrix(~Ethnicity-1, dataset_red)
 
-    features_new_input = cbind(channel_hot, timeofday_hot, dayofweek_hot,
-                               age_hot, credit_hot, income_hot,gender_hot,marital_status_hot,
-                               ethnicity_hot)
-
-    write.csv(tail(features_new_input,1), "features_new_input.csv", row.names = FALSE)
+    write.csv(profile_data, "features_new_input.csv", row.names = TRUE)
     
     incProgress(0.8, detail = "Running predictions using ML model...")
 
@@ -116,11 +89,52 @@ observeEvent(input$profile_button, {
 
 new_predictions = eventReactive(input$profile_button, {
 
-    app_model = readRDS("app_model.rds")
+    app_model = readRDS("new_app_model.rds")
     new_features = read.csv("features_new_input.csv")
     test_predictions = predict(app_model, newdata = new_features, type = "prob")
     return(test_predictions)
 
+})
+
+
+profile_table = eventReactive(input$profile_button, {
+
+    new_features = read.csv("features_new_input.csv")
+    return(new_features)
+
+})
+
+new_lime_explainability = eventReactive(input$profile_button, {
+    
+    gbmFit1 = readRDS("new_app_model.rds")
+    new_features = read.csv("features_new_input.csv")
+    training = dataset_reactive() %>%
+        select(Conversion_Flag, Channel, Time_Of_Day, DayofWeek, Age, Credit_Score, Annual_Income_Bucket,
+               Gender, Marital_Status, Ethnicity) %>%
+        mutate(Channel = as.factor(Channel),
+                Time_Of_Day = as.factor(Time_Of_Day),
+                DayofWeek = as.factor(DayofWeek),
+                Age = as.factor(Age),
+                Credit_Score = as.factor(Credit_Score),
+                Annual_Income_Bucket = as.factor(Annual_Income_Bucket),
+                Gender = as.factor(Gender),
+                Marital_Status = as.factor(Marital_Status),
+                Ethnicity = as.factor(Ethnicity)) %>%
+        mutate(Conversion_Flag = case_when(
+            Conversion_Flag == 0 ~ "No",
+            Conversion_Flag == 1 ~ "Yes")) %>%
+        mutate(Conversion_Flag = as.factor(Conversion_Flag))
+
+
+    
+    explainer_caret <- lime::lime(training %>% select(-c(Conversion_Flag)), gbmFit1)
+    explanation_caret <- lime::explain(
+            x = new_features %>% select(-c(X)),
+            explainer = explainer_caret,
+            n_features = 10, 
+            n_labels = 1
+        )
+    return(explanation_caret)
 })
 
 
