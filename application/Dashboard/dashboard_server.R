@@ -132,40 +132,40 @@ output$dynamic_viz <- renderHighchart({
 
 
 output$vbox1 <- renderValueBox(valueBoxSpark(
-                                            value = "1,345",
-                                            title = toupper("Lines of code written"),
-                                            sparkobj = hchart(df, "area", hcaes(x, y), name = "lines of code")  %>% 
+                                            value = paste0(value_boxes_reactive() %>% filter(Conversion_Flag == 'No') %>% select(, c(Time_Stamp, cnt_all)) %>% .$cnt_all %>% sum()),
+                                            title = toupper("Negative Conversions"),
+                                            sparkobj = hchart(value_boxes_reactive() %>% filter(Conversion_Flag == 'No') %>% select(, c(Time_Stamp, cnt_all)), "area", hcaes(Time_Stamp, cnt_all), name = "lines of code")  %>% 
                                                         hc_size(height = 50) %>% 
                                                         hc_credits(enabled = FALSE) %>% 
                                                         hc_add_theme(hc_theme_sparkline_vb()) ,
-                                            subtitle = tagList(HTML("&darr;"), "25% Since last day"),
-                                            info = "This is the lines of code I've written in the past 20 days! That's a lot, right?",
+                                            subtitle = tagList(HTML("&darr;"), "25% Since last month"),
+                                            info = "Positive Conversions across all campaigns",
                                             width = 12,
                                             color = "aqua",
                                             href = NULL
   ))
 output$vbox2 <- renderValueBox(valueBoxSpark(
-                                            value = "1,345 KM",
-                                            title = toupper("Distance Traveled"),
-                                            sparkobj = hchart(df, "line", hcaes(x, y), name = "Distance")  %>% 
+                                            value = paste0(value_boxes_reactive() %>% filter(Conversion_Flag == 'Yes') %>% select(, c(Time_Stamp, cnt_all)) %>% .$cnt_all %>% sum()),
+                                            title = toupper("Positive Conversions"),
+                                            sparkobj = hchart(value_boxes_reactive() %>% filter(Conversion_Flag == 'Yes') %>% select(, c(Time_Stamp, cnt_all)), "line", hcaes(Time_Stamp, cnt_all), name = "Distance")  %>% 
                                                         hc_size(height = 50) %>% 
                                                         hc_credits(enabled = FALSE) %>% 
                                                         hc_add_theme(hc_theme_sparkline_vb()),
                                             subtitle = tagList(HTML("&uarr;"), "25% Since last month"),
-                                            info = "This is the lines of code I've written in the past 20 days! That's a lot, right?",
+                                            info = "Negative Conversions across all campaigns",
                                             width = 12,
                                             color = "orange",
                                             href = NULL
   ))
 output$vbox3 <- renderValueBox(valueBoxSpark(
-                                            value = "1,3 Hrs.",
-                                            title = toupper("Thinking time"),
-                                            sparkobj = hchart(df, "column", hcaes(x, y), name = "Daily amount")  %>% 
+                                            value = paste0(value_boxes_reactive() %>% filter(Conversion_Flag == 'All') %>% select(, c(Time_Stamp, cnt_all)) %>% .$cnt_all %>% sum()),
+                                            title = toupper("All Campaigns"),
+                                            sparkobj = hchart(value_boxes_reactive() %>% filter(Conversion_Flag == 'All') %>% select(, c(Time_Stamp, cnt_all)), "column", hcaes(Time_Stamp, cnt_all), name = "Daily amount")  %>% 
                                                         hc_size(height = 50) %>% 
                                                         hc_credits(enabled = FALSE) %>% 
                                                         hc_add_theme(hc_theme_sparkline_vb()) ,
-                                            subtitle = tagList(HTML("&uarr;"), "5% Since last year"),
-                                            info = "This is the lines of code I've written in the past 20 days! That's a lot, right?",
+                                            subtitle = tagList(HTML("&uarr;"), "5% Since last month"),
+                                            info = "All Conversions across all campaigns",
                                             width = 12,
                                             color = "navy",
                                             href = NULL

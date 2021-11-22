@@ -19,6 +19,26 @@ dataset_reactive = reactive({
 })
 
 
+value_boxes_reactive = reactive({
+    dataset = dataset_reactive()
+
+    time_conversions = dataset %>%
+        mutate(Conversion_Flag = case_when(
+            Conversion_Flag == 0 ~ "No",
+            Conversion_Flag == 1 ~ "Yes")) %>%
+        group_by(Time_Stamp, Conversion_Flag) %>%
+        summarise(cnt_all = n(), .groups = "drop") %>%
+            bind_rows(., dataset %>%
+                    group_by(Time_Stamp) %>%
+                    summarise(cnt_all = n(),.groups = "drop") %>%
+                    mutate(Conversion_Flag = "All") %>%
+                    select(., c(Time_Stamp, Conversion_Flag, cnt_all))
+  )
+
+    return(time_conversions)
+})
+
+
 
 
 profile_reactive <- eventReactive(input$profile_button, {

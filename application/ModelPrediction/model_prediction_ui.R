@@ -120,7 +120,7 @@ tabItem(
                                     ),
                              column(2,
                                         actionButton("best_profile", "Best Profile",icon = icon("users"),
-                                                style="color: #FFFFFF; background-color: #F79714; border-color: #F79714;margin-left:2em")
+                                                style="color: #FFFFFF; background-color: #F79714; border-color: #F79714;margin-left:3em")
                              
                              )
                             )

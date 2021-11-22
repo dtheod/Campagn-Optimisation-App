@@ -50,8 +50,7 @@ ui <-     dashboardPagePlus(
       menuItem("Dashboard", tabName = "user_dashboard", icon = icon("chart-area")),
       menuItem("Model Prediction", tabName = "model_prediction", icon = icon("robot"),
                menuSubItem("Create Profile", tabName = "create_profile", icon = icon("clipboard-check")),
-               menuSubItem("Results", tabName = "ml_results", icon = icon("adjust")),
-               menuSubItem("Evaluation Metrics", tabName = "ml_evaluation", icon = icon("tags"))
+               menuSubItem("Results", tabName = "ml_results", icon = icon("adjust"))
       ))
   ),
   dashboardBody(
@@ -69,7 +68,6 @@ ui <-     dashboardPagePlus(
 
 server <- function(input, output, session) {
 
-  #source(file.path("authentication", "auths.R"),  local = TRUE)$value
   source(file.path(".//application//Dashboard/dashboard_server.R"),  local = TRUE)$value
   source(file.path(".//application//Reactivity/reactivity.R"),  local = TRUE)$value
   source(file.path(".//application//ModelPrediction/model_prediction_server.R"),  local = TRUE)$value
