@@ -161,7 +161,7 @@ output$dynamic_viz <- renderHighchart({
           categories = bar_chart$var
           ) %>%
         # Titles, subtitle, caption and credits
-        hc_title(text = "Conversions over time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
+        hc_title(text = paste0("Conversions over",input$xcol),style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
 
   } else {
 
@@ -179,7 +179,8 @@ output$dynamic_viz <- renderHighchart({
           data = bar_chart$sums,
           pointPlacement = "on",
           color = "#82B63A"
-        ))
+        )) %>%
+      hc_title(text = paste0("Conversions over",input$xcol),style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
   }
 
 })
