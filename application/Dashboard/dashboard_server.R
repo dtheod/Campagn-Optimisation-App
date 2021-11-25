@@ -25,7 +25,7 @@ output$comm_prods_viz <- renderHighchart({
     ) %>%
     hc_add_dependency("plugins/grouped-categories.js") %>%
     hc_colors(c("#112D4E", "#F79714", "#99A3A4")) %>%
-    hc_title(text = "Conversions over Channel, Day and Time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
+    hc_title(text = "Successful conversions over Channel, Day and Time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
   
 })
 
@@ -48,7 +48,7 @@ output$map_conversion  <- renderHighchart({
         color = "#112D4E",
         tooltip = list(valueDecimals = 0)) %>%
         hc_colors(c("#112D4E")) %>% 
-        hc_title(text = "Conversions over states",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
+        hc_title(text = "Successful conversions over States",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
 
 })
 
@@ -65,7 +65,7 @@ output$timeseries_chart <- renderHighchart({
     xts_organisation_data <- xts(time_conversions$conversions,time_conversions$Time_Stamp)
 
     hc <- highchart(type = "stock") %>% 
-      hc_title(text = "Conversions over time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px')) %>%
+      hc_title(text = "Successful conversions over time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px')) %>%
       hc_add_series(xts_organisation_data, id = "xts_organisation_data", name = "Conversions") %>% 
       hc_colors(c("#112D4E")) %>%
       hc_legend(enabled = TRUE)
@@ -119,7 +119,8 @@ output$timeline_campaigns <- renderHighchart({
           title = FALSE,
           categories = df1$Campaign_Name
         ) %>%
-        hc_colors(c("#112D4E", "#F79714","#112D4E", "#99A3A4","#99A3A4","#99A3A4"))
+        hc_colors(c("#112D4E", "#F79714","#112D4E", "#99A3A4","#99A3A4","#99A3A4")) %>%
+        hc_title(text = "Campaigns over time",style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
   
   hc
 
@@ -161,7 +162,7 @@ output$dynamic_viz <- renderHighchart({
           categories = bar_chart$var
           ) %>%
         # Titles, subtitle, caption and credits
-        hc_title(text = paste0("Conversions over",input$xcol),style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
+        hc_title(text = paste0("Successful conversions over ",input$xcol),style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
 
   } else {
 
@@ -180,7 +181,7 @@ output$dynamic_viz <- renderHighchart({
           pointPlacement = "on",
           color = "#82B63A"
         )) %>%
-      hc_title(text = paste0("Conversions over",input$xcol),style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
+      hc_title(text = paste0("Successful conversions over ",input$xcol),style = list(color = "#34495E", useHTML = TRUE, fontSize = '16px'))
   }
 
 })
@@ -194,7 +195,7 @@ output$vbox1 <- renderValueBox(valueBoxSpark(
                                                         hc_credits(enabled = FALSE) %>% 
                                                         hc_add_theme(hc_theme_sparkline_vb()) ,
                                             subtitle = tagList(HTML("&darr;"), "25% Since last month"),
-                                            info = "Positive Conversions across all campaigns",
+                                            info = "Unsuccessful Conversions across all campaigns",
                                             width = 12,
                                             color = "aqua",
                                             href = NULL
@@ -207,7 +208,7 @@ output$vbox2 <- renderValueBox(valueBoxSpark(
                                                         hc_credits(enabled = FALSE) %>% 
                                                         hc_add_theme(hc_theme_sparkline_vb()),
                                             subtitle = tagList(HTML("&uarr;"), "25% Since last month"),
-                                            info = "Negative Conversions across all campaigns",
+                                            info = "Successful Conversions across all campaigns",
                                             width = 12,
                                             color = "orange",
                                             href = NULL
