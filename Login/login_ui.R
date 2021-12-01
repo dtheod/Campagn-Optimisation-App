@@ -13,8 +13,8 @@ tags$div(id = "login",
                          br(),
                          br(),
                          br(),
-                         textInputAddon("username", NULL, value = NULL,placeholder = "Type in your Username", addon = icon("user"), width = 500),
-                         passwordInputAddon("password",NULL, value = NULL, placeholder = "Type in your Password", addon = icon("lock"),width = 500),
+                         textInputAddon("username", NULL, value = "admin",placeholder = "Type in your Username", addon = icon("user"), width = 500),
+                         passwordInputAddon("password",NULL, value = "admin", placeholder = "Type in your Password", addon = icon("lock"),width = 500),
                          prettyCheckbox(
                            inputId = "pretty_1", label = "Remember my password", icon = icon("check")
                          ),
